@@ -65,15 +65,15 @@ const handleSubmit = (e) => {
        </View>
        <View style={{justifyContent:'center',color:'white',fontSize:17,fontWeight:'3000',paddingLeft:77,
          width: Dimensions.get('screen').width * 0.80,
-         height: Dimensions.get('screen').height * 0.08,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'#032B44',display:'flex'}}>
+         height: Dimensions.get('screen').height * 0.09,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'#032B44',display:'flex'}}>
         <Text style={{color:'#E5EDF0',fontSize:17,fontWeight:'3000'}}>Orgin</Text>
-        <Text style={{color:'#032B44',fontSize:23,fontWeight:'7000',paddingLeft:10,height: 30, width:195,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'white',}}>{origin}</Text>
+        <Text style={{color:'#032B44',fontSize:23,fontWeight:'7000',paddingLeft:10,height: 40, width:195,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'white',paddingTop:5}}>{origin}</Text>
        </View>
        <View style={{justifyContent:'center',color:'white',fontSize:17,fontWeight:'3000',paddingLeft:77
          ,width: Dimensions.get('screen').width * 0.80,
-         height: Dimensions.get('screen').height * 0.08,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'#032B44',display:'flex'}}>
+         height: Dimensions.get('screen').height * 0.09,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'#032B44',display:'flex'}}>
         <Text style={{color:'white',fontSize:17,fontWeight:'9000'}}>Destination</Text>
-        <Text style={{color:'#032B44',fontSize:23,fontWeight:'7000',paddingLeft:10,height: 30, width:195,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'white',}}>{destination}</Text>
+        <Text style={{color:'#032B44',fontSize:23,fontWeight:'7000',paddingLeft:10,height: 40, width:195,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'white',paddingTop:5}}>{destination}</Text>
        </View>
        <TouchableOpacity onPress={()=>navigator.navigate('Home')}>
         <View  style={{alignItems:'center',height: Dimensions.get('screen').height * 0.04, width:Dimensions.get('screen').width * 0.55,borderRadius:15, borderColor: '#cc4c', borderWidth: 1,backgroundColor:'gray',paddingTop:3}} >

@@ -23,7 +23,7 @@ const LoginScreen = () => {
     setLoading(true);  
 
     try {
-      const response = await axios.post('http://192.168.162.41:3000/userAuth/userlogin', {
+      const response = await axios.post('http://192.168.91.41:3000/userAuth/userlogin', {
         userEmail: email,
         userPassword: password
       });
@@ -125,7 +125,7 @@ const LoginScreen = () => {
           </TouchableOpacity>
           <Text style={styles.signupText}>
             Don't have an account?{' '}
-            <Text style={styles.signupLink} onPress={() => navigator.navigate('Signup')}>
+            <Text style={styles.signupLink} onPress={() => navigator.navigate('Test')}>
               Signup
             </Text>
           </Text>

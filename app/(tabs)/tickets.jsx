@@ -12,7 +12,7 @@ const Tickets = () => {
   const { origin, destination, agency } = route.params;
 
   useEffect(() => {
-    const API_URL = 'http://192.168.162.41:3000/findTickets';
+    const API_URL = 'http://192.168.91.41:3000/findTickets';
     const requestBody = {
       origin,
       destination,

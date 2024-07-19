@@ -52,74 +52,79 @@ const Home = () => {
   
       <Modal visible={visible} transparent={true} >
       <View
+        fadeDuration={2000}
         style={{
-          height: '5%',
-         
-          width: '70%',
+          height: '4%',
+          width: '40%',
           alignSelf: 'center',
           backgroundColor: '#E5EDF0',
-          borderRadius:12,
+          borderRadius:10,
           position:'absolute',
-          top:'10%',
-          left:'30%',
+          top:'8%',
+          left:'53%',
           justifyContent:'center',
           alignItems:'center'
          
         }}>
-          <Text style={{fontSize:20,fontWeight:'900',color:'#032B44'}}>Profile</Text>
+          <Text style={{fontSize:17,fontWeight:'900',color:'#032B44'}}>Schedule</Text>
       </View>
       <View
+        fadeDuration={3000}
         style={{
-          height: '5%',
-          
-          width: '70%',
+          height: '4%',
+          width: '40%',
           alignSelf: 'center',
           backgroundColor: '#E5EDF0',
-          borderRadius:12,
+          borderRadius:10,
           position:'absolute',
-          top:'16%',
-          left:'30%',
+          top:'13%',
+          left:'53%',
           justifyContent:'center',
           alignItems:'center'
          
         }}>
-     <Text style={{fontSize:20,fontWeight:'900',color:'#032B44'}}>Booked Tickets</Text>
+     <Text style={{fontSize:17,fontWeight:'900',color:'#032B44'}}>History</Text>
       </View>
       <View
+        fadeDuration={4000}
         style={{
-          height: '5%',
-         
-          width: '70%',
+          height: '4%',
+          width: '40%',
           alignSelf: 'center',
           backgroundColor: '#E5EDF0',
-          borderRadius:12,
+          borderRadius:10,
           position:'absolute',
-          top:'22%',
-          left:'30%',
+          top:'18%',
+          left:'53%',
           justifyContent:'center',
           alignItems:'center'
          
         }}>
-     
-      <Text style={{fontSize:20,fontWeight:'900',color:'#032B44'}}>Settings</Text>
-        
-      </View>
+                 
+      <Text style={{fontSize:17,fontWeight:'900',color:'#032B44'}}>Log Out</Text>  
+      </View> 
       <View
       
         style={{
-          height: '5%',
-          width: '30%',
           alignSelf: 'center',
-          backgroundColor: '#032B44',
           borderRadius:12,
           position:'relative',
-          top:'28%',
-          left:'17%',
+          top:'23%',
+          left:'23%',
           justifyContent:'center',
-          alignItems:'center'
+          alignItems:'center',
+          width:'13%',
+          height:'5%',
+          backgroundColor:'#032B44',
+          borderRadius:15
         }}>
      <TouchableOpacity onPress={()=>setVisible(!visible)}>
-      <Text style={{fontSize:18,fontWeight:'700',color:'white'}} >Close</Text>
+     <Image 
+      style={{
+       resizeMode: 'contain',
+       height:25,
+      width:30}} className='' source={
+      require('../assets/close.png')} />
         </TouchableOpacity>
       </View>
     </Modal>
@@ -135,10 +140,9 @@ const Home = () => {
       </View>
       <View style={styles.loginContainer}>
       <View style={styles.loginBox}>
-      <TouchableOpacity style={styles.googleLoginButton}>
-           
+      <View style={styles.googleLoginButton}>
             <Text style={styles.googleLoginText}>Choose Orgin and Destination</Text>
-          </TouchableOpacity>
+          </View>
        <Text style={{justifyContent:'center',color:'#032B44',fontSize:20,fontWeight:'bold',paddingTop:'1%',paddingBottom:'3%'}}>
         Orgin
        </Text>
@@ -146,8 +150,11 @@ const Home = () => {
       <Picker
         style={styles.input}
         selectedValue={Orgin}
-        onValueChange={(itemValue) => setOrgin(itemValue)}
+        onValueChange={(itemValue) => setOrgin(itemValue)
+          
+        }
       >
+        
         <Picker.Item label="Choose city of Orgin"  disabled={true} />
         <Picker.Item label="Kigali" value="Kigali" />
         <Picker.Item label="Muhanga" value="Muhanga" />
@@ -206,7 +213,7 @@ const styles = StyleSheet.create({
     fontWeight:'900'
   },
   Header:{
-  height: Dimensions.get('window').height * 0.13,
+  height: Dimensions.get('window').height * 0.14,
   justifyContent:'center',
   paddingHorizontal: Dimensions.get('window').height * 0.02 
   },
@@ -227,7 +234,8 @@ const styles = StyleSheet.create({
     height: Dimensions.get('screen').height * 0.50,
     borderRadius: 10,
     position: 'relative',
-    top: '-28%',
+    top: '-30%',
+    paddingTop:'10%'
   },
   loginContainer: {
     backgroundColor: 'white',
@@ -251,7 +259,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   input: {
-    height: Dimensions.get('screen').height * 0.07,
+    height: Dimensions.get('screen').height * 0.09,
     width: Dimensions.get('screen').width * 0.8,
     borderRadius: 10,
     borderColor: '#ccc',
@@ -265,11 +273,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#E5EDF0',
-    width: Dimensions.get('screen').width * 0.87,
-    height: Dimensions.get('screen').height * 0.09,
+    width: Dimensions.get('screen').width * 0.89,
+    height: Dimensions.get('screen').height * 0.15,
     borderRadius: 10,
     position:'relative',
-    top:'30%',
+    top:'40%',
    
   }
 })
