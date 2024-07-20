@@ -40,8 +40,8 @@ const handleSubmit = (e) => {
       </MapView>
      
     <View className='bg-white h-full'>
-    <ScrollView contentContainerStyle={{ height: Dimensions.get('window').height * 1.3 }} style={{flex:1}} >
-    <View style={{backgroundColor:'#E5EDF0',height: Dimensions.get('window').height * 0.07,}}>
+    <ScrollView contentContainerStyle={{ height: Dimensions.get('window').height * 1.7 }} style={{flex:1}} >
+    <View style={{backgroundColor:'#E5EDF0',height: Dimensions.get('window').height * 0.09,}}>
     <Text style={{color:'white',position:'relative',top:'5%',left:'35%',fontSize:37,fontWeight:'900',paddingBottom:10}}>
             Booking 
           </Text> 
@@ -51,7 +51,7 @@ const handleSubmit = (e) => {
            
            justifyContent:'start',
            width: Dimensions.get('screen').width * 0.87,
-           height: Dimensions.get('screen').height * 0.35,
+           height: Dimensions.get('screen').height * 0.50,
            backgroundColor: '#E5EDF0',
            borderRadius: 20,
            alignItems: 'center',
@@ -65,18 +65,18 @@ const handleSubmit = (e) => {
        </View>
        <View style={{justifyContent:'center',color:'white',fontSize:17,fontWeight:'3000',paddingLeft:77,
          width: Dimensions.get('screen').width * 0.80,
-         height: Dimensions.get('screen').height * 0.09,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'#032B44',display:'flex'}}>
+         height: Dimensions.get('screen').height * 0.12,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'#032B44',display:'flex'}}>
         <Text style={{color:'#E5EDF0',fontSize:17,fontWeight:'3000'}}>Orgin</Text>
         <Text style={{color:'#032B44',fontSize:23,fontWeight:'7000',paddingLeft:10,height: 40, width:195,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'white',paddingTop:5}}>{origin}</Text>
        </View>
        <View style={{justifyContent:'center',color:'white',fontSize:17,fontWeight:'3000',paddingLeft:77
          ,width: Dimensions.get('screen').width * 0.80,
-         height: Dimensions.get('screen').height * 0.09,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'#032B44',display:'flex'}}>
+         height: Dimensions.get('screen').height * 0.12,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'#032B44',display:'flex'}}>
         <Text style={{color:'white',fontSize:17,fontWeight:'9000'}}>Destination</Text>
         <Text style={{color:'#032B44',fontSize:23,fontWeight:'7000',paddingLeft:10,height: 40, width:195,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'white',paddingTop:5}}>{destination}</Text>
        </View>
        <TouchableOpacity onPress={()=>navigator.navigate('Home')}>
-        <View  style={{alignItems:'center',height: Dimensions.get('screen').height * 0.04, width:Dimensions.get('screen').width * 0.55,borderRadius:15, borderColor: '#cc4c', borderWidth: 1,backgroundColor:'gray',paddingTop:3}} >
+        <View className='mt-5'  style={{alignItems:'center',height: Dimensions.get('screen').height * 0.05, width:Dimensions.get('screen').width * 0.55,borderRadius:10, backgroundColor:'rgba(0, 0, 0, 0.5)',justifyContent:'center'}} >
           
           <Text style={{color:'white',fontSize:20,fontWeight:'7000'}}>Choose or Change</Text>
           </View> 
@@ -87,7 +87,7 @@ const handleSubmit = (e) => {
            
            justifyContent:'start',
            width: Dimensions.get('screen').width * 0.87,
-           height: Dimensions.get('screen').height * 0.38,
+           height: Dimensions.get('screen').height * 0.45,
            backgroundColor: '#E5EDF0',
            borderRadius: 20,
            alignItems: 'center',
@@ -114,7 +114,7 @@ const handleSubmit = (e) => {
       </Picker>
     </View>
     <TouchableOpacity className='mt-2' onPress={handleSubmit}>
-        <View className='mt-12'  style={{alignItems:'center',height: Dimensions.get('screen').height * 0.04, width:Dimensions.get('screen').width * 0.55,borderRadius:15,  borderWidth: 1,backgroundColor:'#032B44',paddingTop:3}} >
+        <View className='mt-12'  style={{alignItems:'center',height: Dimensions.get('screen').height * 0.05, width:Dimensions.get('screen').width * 0.55,borderRadius:10,  borderWidth: 1,backgroundColor:'#032B44',justifyContent:'center'}} >
           
           <Text style={{color:'white',fontSize:20,fontWeight:'7000'}}>Find Ticket</Text>
           </View> 
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#E5EDF0',
     width: Dimensions.get('screen').width * 0.87,
-    height: Dimensions.get('screen').height * 0.70,
+    height: Dimensions.get('screen').height * 0.90,
     borderRadius: 10,
     position: 'relative',
     top: '-30%',
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
   },
   googleLoginButton: {
     flexDirection: 'row',
-    height: Dimensions.get('screen').height * 0.06,
+    height: Dimensions.get('screen').height * 0.08,
     width: Dimensions.get('screen').width * 0.8,
     backgroundColor: '#032B44',
     borderRadius: 5,

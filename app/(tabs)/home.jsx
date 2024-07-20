@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View,Animated } from 'react-native'
 import React from 'react'
 import { ScrollView } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -28,6 +28,30 @@ const Home = () => {
   const [visible, setVisible] = useState(false);
   
   
+
+
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [translateX] = useState(new Animated.Value(-Dimensions.get('window').width));
+
+  const toggleOffCanvas = () => {
+    setIsOpen(!isOpen);
+    Animated.spring(translateX, {
+      toValue: isOpen ? -Dimensions.get('window').width : 0,
+      useNativeDriver: true, // Add this line for performance
+    }).start();
+  };
+
+  const offCanvasStyle = {
+    transform: [{ translateX: translateX }],
+  };
+
+
+
+
+
+
+
   const HandleContinue =(e)=>{
     e.preventDefault()
     dispatch(setDestinationa(destination))
@@ -45,94 +69,127 @@ const Home = () => {
           <Text style={styles.HeaderText}>
             ETIX
           </Text>
-           <TouchableOpacity onPress={()=>setVisible(!visible)} style={{position:'absolute',left:'90%'}}>
+           <TouchableOpacity onPress={toggleOffCanvas} style={{position:'absolute',left:'90%'}}>
            <MaterialCommunityIcons name="menu" size={34}  color="white" />
            </TouchableOpacity>
       </View>
   
-      <Modal visible={visible} transparent={true} >
-      <View
+    
+    
+     
+   
+
+      <Animated.View style={[styles.offCanvas, offCanvasStyle]}>
+        <Text
+           style={{
+            height: '4%',
+            width: '63%',
+            alignSelf: 'center',
+            borderRadius:5,
+            position:'absolute',
+            top:'6.5%',
+            left:'5%',
+            justifyContent:'center',
+            alignItems:'center',
+            color:'white',
+            fontSize:28,
+            fontWeight:'900'
+           
+          }} 
+        >ETIX menu</Text>
+        <TouchableOpacity
+          style={{
+            height: '4%',
+            width: '63%',
+            alignSelf: 'center',
+            backgroundColor: 'white',
+            borderRadius:5,
+            position:'absolute',
+            top:'20%',
+            left:'4%',
+            justifyContent:'center',
+            alignItems:'center'
+           
+          }} 
+        >
+        <View
         fadeDuration={2000}
-        style={{
-          height: '4%',
-          width: '40%',
-          alignSelf: 'center',
-          backgroundColor: '#E5EDF0',
-          borderRadius:10,
-          position:'absolute',
-          top:'8%',
-          left:'53%',
-          justifyContent:'center',
-          alignItems:'center'
-         
-        }}>
+      >
           <Text style={{fontSize:17,fontWeight:'900',color:'#032B44'}}>Schedule</Text>
       </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+       style={{
+        height: '4%',
+        width: '63%',
+        alignSelf: 'center',
+        backgroundColor: '#032B25',
+        borderRadius:5,
+        position:'absolute',
+        top:'25%',
+        left:'4%',
+        justifyContent:'center',
+        alignItems:'center'
+       
+      }}
+      >
       <View
         fadeDuration={3000}
-        style={{
-          height: '4%',
-          width: '40%',
-          alignSelf: 'center',
-          backgroundColor: '#E5EDF0',
-          borderRadius:10,
-          position:'absolute',
-          top:'13%',
-          left:'53%',
-          justifyContent:'center',
-          alignItems:'center'
-         
-        }}>
-     <Text style={{fontSize:17,fontWeight:'900',color:'#032B44'}}>History</Text>
+       >
+     <Text style={{fontSize:17,fontWeight:'900',color:'white'}}>History</Text>
       </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+           style={{
+            height: '4%',
+            width: '63%',
+            alignSelf: 'center',
+            backgroundColor: '#032B05',
+            borderRadius:5,
+            position:'absolute',
+            top:'30%',
+            left:'4%',
+            justifyContent:'center',
+            alignItems:'center'
+           
+          }}
+      >
       <View
         fadeDuration={4000}
-        style={{
-          height: '4%',
-          width: '40%',
-          alignSelf: 'center',
-          backgroundColor: '#E5EDF0',
-          borderRadius:10,
-          position:'absolute',
-          top:'18%',
-          left:'53%',
-          justifyContent:'center',
-          alignItems:'center'
-         
-        }}>
+   >
                  
-      <Text style={{fontSize:17,fontWeight:'900',color:'#032B44'}}>Log Out</Text>  
-      </View> 
-      <View
-      
-        style={{
-          alignSelf: 'center',
-          borderRadius:12,
-          position:'relative',
-          top:'23%',
-          left:'23%',
-          justifyContent:'center',
-          alignItems:'center',
-          width:'13%',
-          height:'5%',
-          backgroundColor:'#032B44',
-          borderRadius:15
-        }}>
-     <TouchableOpacity onPress={()=>setVisible(!visible)}>
-     <Image 
-      style={{
-       resizeMode: 'contain',
-       height:25,
-      width:30}} className='' source={
-      require('../assets/close.png')} />
-        </TouchableOpacity>
+      <Text style={{fontSize:17,fontWeight:'900',color:'white'}}>Booked Tickets</Text>  
       </View>
-    </Modal>
-
+      </TouchableOpacity>
+      <TouchableOpacity
+            style={{
+              height: '4%',
+              width: '63%',
+              alignSelf: 'center',
+              backgroundColor: '#032B44',
+              borderRadius:5,
+              position:'absolute',
+              top:'35%',
+              left:'4%',
+              justifyContent:'center',
+              alignItems:'center'
+             
+            }} 
+      >
+      <View fadeDuration={4000}>
+                 
+      <Text style={{fontSize:17,fontWeight:'900',color:'white'}}>Log Out</Text>  
+      </View>
+      </TouchableOpacity>
+        <TouchableOpacity onPress={toggleOffCanvas} style={styles.closeButton}>
+          <MaterialCommunityIcons name='arrow-left' color={'white'} size={30} />
+        </TouchableOpacity>
+      </Animated.View>
+   
 
     <View className='h-full' style={{backgroundColor:'white',}}>
      <ScrollView 
-       contentContainerStyle={{ height: Dimensions.get('window').height * 1.3 }}
+       contentContainerStyle={{ height: Dimensions.get('window').height * 1.5 }}
        style={{ flex: 1 }}
        >
       <View>
@@ -148,6 +205,7 @@ const Home = () => {
        </Text>
        <View>
       <Picker
+        scrollable='true'
         style={styles.input}
         selectedValue={Orgin}
         onValueChange={(itemValue) => setOrgin(itemValue)
@@ -171,6 +229,7 @@ const Home = () => {
        </Text>
        <View>
       <Picker
+        scrollable='true'
         style={styles.input}
         selectedValue={destination}
         onValueChange={(itemValue) => setDestination(itemValue)}
@@ -231,7 +290,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#E5EDF0',
     width: Dimensions.get('screen').width * 0.87,
-    height: Dimensions.get('screen').height * 0.50,
+    height: Dimensions.get('screen').height * 0.55,
     borderRadius: 10,
     position: 'relative',
     top: '-30%',
@@ -278,6 +337,38 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     position:'relative',
     top:'40%',
+
    
-  }
+  },
+  container2: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    padding: 10,
+    backgroundColor: 'lightblue',
+    marginBottom: 10,
+  },
+  offCanvas: {
+    position: 'absolute',
+    top:'0%',
+    bottom:'0%',
+    width: Dimensions.get('window').width * 0.8, // Adjust width as needed
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    borderLeftWidth: 1,
+    borderLeftColor: '#ccc',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height:Dimensions.get('window').width * 2,
+    zIndex:1
+    
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 44,
+    right: 20,
+    padding: 10,
+    
+  },
 })
