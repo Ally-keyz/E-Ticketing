@@ -9,15 +9,8 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setDestinationa, setOrgina } from '../appSlice/appSlices'
 import { useNavigation } from '@react-navigation/native'
-import PlacesAutoComplete from '../components/PlacesAutoComplete'
 import HorizontalScrollView from '../components/HorizontalScroll'
 import { Dimensions } from 'react-native'
-import { LayoutAnimation } from 'react-native';
-import { Modal } from 'react-native'
-import { Button } from 'react-native'
-
-
-
 
 
 const Home = () => {
@@ -26,14 +19,11 @@ const Home = () => {
   const navigation = useNavigation()
   const dispatch = useDispatch()
   const [visible, setVisible] = useState(false);
-  
-  
-
-
-
   const [isOpen, setIsOpen] = useState(false);
   const [translateX] = useState(new Animated.Value(-Dimensions.get('window').width));
 
+
+  
   const toggleOffCanvas = () => {
     setIsOpen(!isOpen);
     Animated.spring(translateX, {
@@ -80,29 +70,38 @@ const Home = () => {
    
 
       <Animated.View style={[styles.offCanvas, offCanvasStyle]}>
-        <Text
-           style={{
-            height: '4%',
-            width: '63%',
+        <View   style={{
+            height: '14.6%',
+            width: '100%',
             alignSelf: 'center',
             borderRadius:5,
             position:'absolute',
-            top:'6.5%',
-            left:'5%',
+            top:'0%',
+            left:'0%',
             justifyContent:'center',
             alignItems:'center',
-            color:'white',
-            fontSize:28,
-            fontWeight:'900'
+            backgroundColor: '#032B34',
            
-          }} 
+           
+          }} >
+        <Text
+         style={{ color:'white',
+          fontSize:28,
+          fontWeight:'900',
+          position:'absolute',
+          top:'34%',
+          left:'3%',}}
         >ETIX menu</Text>
+        <TouchableOpacity onPress={toggleOffCanvas} style={styles.closeButton}>
+          <MaterialCommunityIcons name='arrow-left' color={'white'} size={30} />
+        </TouchableOpacity>
+     </View>
         <TouchableOpacity
           style={{
             height: '4%',
             width: '63%',
             alignSelf: 'center',
-            backgroundColor: 'white',
+            backgroundColor: '#E5EDF0',
             borderRadius:5,
             position:'absolute',
             top:'20%',
@@ -181,9 +180,7 @@ const Home = () => {
       <Text style={{fontSize:17,fontWeight:'900',color:'white'}}>Log Out</Text>  
       </View>
       </TouchableOpacity>
-        <TouchableOpacity onPress={toggleOffCanvas} style={styles.closeButton}>
-          <MaterialCommunityIcons name='arrow-left' color={'white'} size={30} />
-        </TouchableOpacity>
+        
       </Animated.View>
    
 
@@ -366,9 +363,9 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     position: 'absolute',
-    top: 44,
-    right: 20,
-    padding: 10,
+    padding: 5,
+    left:'80%',
+    top:'36%'
     
   },
 })

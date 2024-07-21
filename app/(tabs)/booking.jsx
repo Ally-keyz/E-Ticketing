@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native'
 import { Picker } from '@react-native-picker/picker';
 import { Dimensions } from 'react-native';
 
-import { setTravelTimeInformation, setAgency } from '../appSlice/appSlices'
+import {  setAgency } from '../appSlice/appSlices'
 
 
 function Booking () {
@@ -76,7 +76,7 @@ const handleSubmit = (e) => {
         <Text style={{color:'#032B44',fontSize:23,fontWeight:'7000',paddingLeft:10,height: 40, width:195,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'white',paddingTop:5}}>{destination}</Text>
        </View>
        <TouchableOpacity onPress={()=>navigator.navigate('Home')}>
-        <View className='mt-5'  style={{alignItems:'center',height: Dimensions.get('screen').height * 0.05, width:Dimensions.get('screen').width * 0.55,borderRadius:10, backgroundColor:'rgba(0, 0, 0, 0.5)',justifyContent:'center'}} >
+        <View className='mt-5'  style={{alignItems:'center',height: Dimensions.get('screen').height * 0.05, width:Dimensions.get('screen').width * 0.55,borderRadius:10, backgroundColor:'#032B34',justifyContent:'center'}} >
           
           <Text style={{color:'white',fontSize:20,fontWeight:'7000'}}>Choose or Change</Text>
           </View> 
