@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#E5EDF0',
     width: Dimensions.get('screen').width * 0.90,
-    height: Dimensions.get('screen').height * 0.50,
+    height: Dimensions.get('screen').height * 0.60,
     borderRadius: 10,
     position: 'relative',
     top: '-50%',

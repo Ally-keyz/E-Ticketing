@@ -11,7 +11,8 @@ import { Provider } from 'react-redux';
 import { store } from './app/store/store';
 import AgencyLogin from './app/Screens/AgencyLogin';
 import Test from './app/(tabs)/test';
-import Toast from './app/AdminPage.jsx/pages';
+import Schedule from './app/(tabs)/Schedule';
+import DriverScreen from './app/Driver/DriverScreen ';
 
 
 
@@ -29,7 +30,8 @@ export default function App() {
         <Stack.Screen name='Signup' component={SignupScreen} />
         <Stack.Screen name='Test' options={{headerShown:false}} component={Test} />
         <Stack.Screen name='Agency Login' component={AgencyLogin} />
-        <Stack.Screen name='pages' options={{headerShown:false}} component={Toast}  />
+        <Stack.Screen name='Schedule' options={{headerShown:false}} component={Schedule} />
+        <Stack.Screen name='Driver' options={{headerShown:false}} component={DriverScreen} />
       </Stack.Navigator>
       </SafeAreaProvider>
     </NavigationContainer>

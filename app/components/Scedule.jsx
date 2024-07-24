@@ -6,6 +6,7 @@ const cars = [
       end: 'Rwamagana',
       time: '2024-7-20 16:30',
       cost: 5000,
+      sitting:'20/24',
     },
     {
       id: 2,
@@ -13,6 +14,7 @@ const cars = [
       end: 'Musanze',
       time: '2024-7-20 16:30',
       cost: 3000,
+      sitting:'17/24',
     },
     {
       id: 3,
@@ -20,6 +22,7 @@ const cars = [
       end: 'Gakenke',
       time: '2024-7-20 16:30',
       cost: 4000,
+      sitting:'14/24',
     },
     {
       id: 4,
@@ -27,6 +30,7 @@ const cars = [
       end: 'Ruhengeri',
       time: '2024-7-20 16:30',
       cost: 2500,
+      sitting:'11/24',
     },
     {
       id: 5,
@@ -34,6 +38,7 @@ const cars = [
       end: 'Gatagara',
       time: '2024-7-20 16:30',
       cost: 3500,
+      sitting:'8/24',
     },
     {
       id: 6,
@@ -41,6 +46,7 @@ const cars = [
       end: 'Kibuye',
       time: '2024-7-20 16:30',
       cost: 4500,
+      sitting:'5/24',
     },
  
     {
@@ -49,6 +55,7 @@ const cars = [
       end: 'Nyagatare',
       time: '2024-7-20 16:30',
       cost: 6500,
+      sitting:'2/24',
     },
     {
       id: 9,
@@ -63,6 +70,7 @@ const cars = [
       end:'Kampla',
       time:'2024-7-20 16:30',
       cost:9000,
+      sitting:'20/24',
     },
     {
       id:11,
@@ -70,6 +78,7 @@ const cars = [
       end:'Kanyaru',
       time:'2024-7-20 16:30',
       cost:3460,
+      sitting:'15/24',
     },
     {
       id:12,
@@ -77,13 +86,16 @@ const cars = [
       end:'Nyamagabe',
       time:'2024-7-20 16:30',
       cost:4442,
+      sitting:'10/24',
     },
     {
       id:13,
       start:'Kigali',
       end:'Nyanza',
       time:'2024-7-20 16:30',
-      cost:2705
+      cost:2705,
+      sitting:'20/24',
+
     },
     {
       id:14,

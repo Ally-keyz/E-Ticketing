@@ -7,7 +7,6 @@ import { Dimensions } from 'react-native';
 import { setLoginData } from './AgencyLogin';
 import { ScrollView } from 'react-native';
 import { ActivityIndicator } from 'react-native';
-
 import axios from 'axios';
 
 const LoginScreen = () => {
@@ -46,25 +45,7 @@ const LoginScreen = () => {
     }
   };
 
-  const handleToggleModal = () => {
-    if (isVisible) {
-      Animated.timing(opacity, {
-        toValue: 0,
-        duration: 500,
-        useNativeDriver: false
-      }).start(() => {
-        setIsVisible(false);
-      });
-    } else {
-      Animated.timing(opacity, {
-        toValue: 1,
-        duration: 500,
-        useNativeDriver: true,
-      }).start(() => {
-        setIsVisible(true);
-      });
-    }
-  };
+
 
   const HandlePress =(e)=>{
     e.preventDefault()
@@ -110,13 +91,14 @@ const LoginScreen = () => {
             style={styles.input}
           />
           <TextInput
+          className='mt-1'
             placeholder="Password"
             value={password}
             onChangeText={setPassword}
             style={styles.input}
             secureTextEntry
           />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=>navigator.navigate('Driver')}>
             <Text style={styles.forgotPasswordText}>Forgot password</Text>
           </TouchableOpacity>
           <Text style={styles.orText}>or</Text>
@@ -125,7 +107,7 @@ const LoginScreen = () => {
           </TouchableOpacity>
           <Text style={styles.signupText}>
             Don't have an account?{' '}
-            <Text style={styles.signupLink} onPress={() => navigator.navigate('Signup')}>
+            <Text style={styles.signupLink} onPress={() => navigator.navigate('Test')}>
               Signup
             </Text>
           </Text>
@@ -192,7 +174,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: '#ccc',
     borderWidth: 1,
-    paddingVertical: 10,
+    paddingVertical: 3,
     paddingHorizontal: 15,
     backgroundColor:'white'
     

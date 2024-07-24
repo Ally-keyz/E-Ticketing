@@ -13,6 +13,8 @@ import HorizontalScrollView from '../components/HorizontalScroll'
 import { Dimensions } from 'react-native'
 
 
+
+
 const Home = () => {
   const [Orgin, setOrgin] = useState('');
   const[destination,setDestination] = useState('')
@@ -21,8 +23,9 @@ const Home = () => {
   const [visible, setVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [translateX] = useState(new Animated.Value(-Dimensions.get('window').width));
-
-
+  
+  const navigator = useNavigation()
+ 
   
   const toggleOffCanvas = () => {
     setIsOpen(!isOpen);
@@ -38,8 +41,7 @@ const Home = () => {
 
 
 
-
-
+ 
 
 
   const HandleContinue =(e)=>{
@@ -66,12 +68,12 @@ const Home = () => {
   
     
     
-     
+   
    
 
       <Animated.View style={[styles.offCanvas, offCanvasStyle]}>
         <View   style={{
-            height: '14.6%',
+            height: Dimensions.get('window').height * 0.17,
             width: '100%',
             alignSelf: 'center',
             borderRadius:5,
@@ -86,17 +88,18 @@ const Home = () => {
           }} >
         <Text
          style={{ color:'white',
-          fontSize:28,
+          fontSize:23,
           fontWeight:'900',
           position:'absolute',
           top:'34%',
           left:'3%',}}
-        >ETIX menu</Text>
+        >Our menu</Text>
         <TouchableOpacity onPress={toggleOffCanvas} style={styles.closeButton}>
           <MaterialCommunityIcons name='arrow-left' color={'white'} size={30} />
         </TouchableOpacity>
      </View>
         <TouchableOpacity
+          onPress={()=>navigator.navigate('Schedule')}
           style={{
             height: '4%',
             width: '63%',
@@ -269,7 +272,7 @@ const styles = StyleSheet.create({
     fontWeight:'900'
   },
   Header:{
-  height: Dimensions.get('window').height * 0.14,
+  height: Dimensions.get('window').height * 0.17,
   justifyContent:'center',
   paddingHorizontal: Dimensions.get('window').height * 0.02 
   },
@@ -290,7 +293,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get('screen').height * 0.55,
     borderRadius: 10,
     position: 'relative',
-    top: '-30%',
+    top: '-35%',
     paddingTop:'10%'
   },
   loginContainer: {
