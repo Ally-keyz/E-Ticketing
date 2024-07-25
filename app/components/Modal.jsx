@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#fff',
     width: Dimensions.get('screen').width * 0.87,
-    height: Dimensions.get('screen').height * 0.47,
+    height: Dimensions.get('screen').height * 0.50,
     borderRadius: 10,
     paddingTop:'6%',
     overflow: 'hidden',

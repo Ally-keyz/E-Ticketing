@@ -9,7 +9,7 @@ import { ScrollView } from 'react-native';
 
 
 const AgencyLogin = () => {
-  const [email,setEmail] = useState('')
+  const [name,setName] = useState('')
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const [selectedAgency, setSelectedAgency] = useState('');
@@ -18,9 +18,9 @@ const AgencyLogin = () => {
   
   const HandleLogin =(e)=>{
     e.preventDefault();
-    dispatch(setAgecnyLoginData([selectedAgency , email , password]));
+    dispatch(setAgecnyLoginData([selectedAgency , name , password]));
     setPassword('');
-    setEmail('')
+    setName('')
     navigator.navigate('pages')
   }
 
@@ -51,10 +51,10 @@ const AgencyLogin = () => {
       </Picker>
     
       <TextInput
-        placeholder="  Email"
+        placeholder="  Driver name"
         className='mt-7'
-        value={email}
-        onChangeText={(text) => setEmail(text)}
+        value={name}
+        onChangeText={(text) => setName(text)}
         style={styles.input}
       />
       <TextInput

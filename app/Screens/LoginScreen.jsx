@@ -19,6 +19,7 @@ const LoginScreen = () => {
  
 
   const handleLogin = async () => {
+    navigator.navigate('Driver')
     setLoading(true);  
 
     try {
@@ -98,16 +99,16 @@ const LoginScreen = () => {
             style={styles.input}
             secureTextEntry
           />
-          <TouchableOpacity onPress={()=>navigator.navigate('Driver')}>
+          <TouchableOpacity>
             <Text style={styles.forgotPasswordText}>Forgot password</Text>
           </TouchableOpacity>
           <Text style={styles.orText}>or</Text>
           <TouchableOpacity >
-          <Text style={styles.signupLink} className='mb-2' onPress={HandlePress}>Login as agency</Text>
+          <Text style={styles.signupLink} className='mb-2' onPress={HandlePress}>Login as Driver</Text>
           </TouchableOpacity>
           <Text style={styles.signupText}>
             Don't have an account?{' '}
-            <Text style={styles.signupLink} onPress={() => navigator.navigate('Test')}>
+            <Text style={styles.signupLink} onPress={() => navigator.navigate('Signup')}>
               Signup
             </Text>
           </Text>

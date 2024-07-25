@@ -20,6 +20,7 @@ const Tickets = () => {
   const [credentials, setCredentials] = useState('');
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(100)).current;
+  const [name,setName]= useState()
   
 
   const closeModal = () => {
@@ -165,6 +166,15 @@ const Tickets = () => {
    </View>
       <Animated.View style={{ opacity: fadeAnim, transform: [{ translateY: slideAnim }] }}>
         <View style={{justifyContent:'center',alignItems:'center'}}>
+
+
+        <TextInput
+          style={styles.input2}
+          value={name}
+          onChangeText={(text) => setName(text)}
+          placeholder='Name'
+          
+        />
         <Text style={{
     paddingTop:'10%', 
     fontSize: 23,
@@ -178,6 +188,7 @@ const Tickets = () => {
           placeholder={`Enter ${paymentMethod === 'card' ? 'card details' : 'credentials'}`}
           secureTextEntry={paymentMethod !== 'card'} // Hide text for non-card methods
         />
+
         <TouchableOpacity style={styles.googleLoginButton} onPress={()=>handlePaymentMethodChange('mtn')}>
            
             <Text style={styles.googleLoginText}>Confirm</Text>
