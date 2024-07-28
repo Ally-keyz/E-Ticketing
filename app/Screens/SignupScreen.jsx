@@ -47,7 +47,7 @@ const SignupScreen = () => {
     contentContainerStyle={{ height: Dimensions.get('window').height * 1.3 }}
     style={{ flex: 1,width:'100%'}}
     >
-    <View style={{  flex:1,backgroundColor: '#032B44',width:'100%' }}>
+    <View style={{  flex:1,backgroundColor: '#035B94',width:'100%' }}>
         <View style={{ flex: 1, alignItems:'center',paddingTop:'13%'}}>
         <Text style={styles.title}>ETIX</Text>
       
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: Dimensions.get('screen').height * 0.05,
     width: Dimensions.get('screen').width * 0.8,
-    backgroundColor: '#032B44',
+    backgroundColor: '#035B94',
     borderRadius: 5,
     justifyContent: 'center',
     marginBottom: 20,

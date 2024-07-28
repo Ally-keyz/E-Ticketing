@@ -13,6 +13,8 @@ import { setOrgina } from '../appSlice/appSlices'
 import { setAgency } from '../appSlice/appSlices'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { useNavigation } from '@react-navigation/native'
+import Modal1 from '../components/Modal'
+
 
 
 
@@ -34,7 +36,8 @@ function Schedule  () {
   const origina = useSelector(state=> state.origin)
   const destinationa = useSelector( state => state.destination)
   const agencyI = useSelector(state => state.agency)
-  const[selected,setSelected]= useState('')
+  const[selected,setSelected]= useState({})
+
   const navigator = useNavigation()
   
 
@@ -50,7 +53,10 @@ function Schedule  () {
 
 
    const closeModal = () => {
-    setModalVisible(false);
+    setVisible(false);
+  };
+  const HandleOpen = () => {
+    
   };
 
 
@@ -58,108 +64,96 @@ function Schedule  () {
     
  <>
  
-  <View className='w-full justify-center items-center h-full px-4' style={{justifyContent:'center',backgroundColor:'#032B44',height: Dimensions.get('screen').height * 0.24,alignItems:'center',borderBottomRightRadius:50,borderBottomLeftRadius:50}}>
-     <View style={{flexDirection:'row',position:'relative',top:'5%',justifyContent:'space-around'}}>
+  <View className='w-full justify-center items-center h-full px-4' style={{justifyContent:'center',backgroundColor:'#035B94',height: Dimensions.get('screen').height * 0.35,alignItems:'center',}}>
+  <Modal1 visible={visible} onClose={closeModal}>
+      <View style={{backgroundColor:'#035B94',width:'100%', borderBottomLeftRadius: 500,borderBottomLeftRadius: 400,alignItems:'center',paddingTop:'5%',height:'55%'}}>
+         <Text style={styles.title}>ETIX</Text>
+         </View>
+         <View style={{alignItems:'start',backgroundColor:'#E5EDF0',width: Dimensions.get('screen').width * 0.80,height: Dimensions.get('screen').height * 0.50,borderRadius:7,position:'relative',top:'-30%'}}>
+         <View style={{alignSelf:'center',flexDirection:'row'}}>
+          <Text style={{
+            fontSize: 17,
+            fontWeight: '800',
+          }}>Details</Text>
+          </View>
+          <View className='mt-5' style={{marginLeft:35}}>
+          <View style={{flexDirection:'row'}}>
+                <Text style={styles.cardText}>Agency: {agency}</Text>
+                <View>
+     <Image 
+     className='mt-1'
+      style={{
+        
+       resizeMode: 'contain',
+       height:30,
+      width:180}}  source={
+      require('../assets/bus2.png')} />
+      
+    </View>
+                </View>
+            <Text>From : {selected.start}</Text>
+            <Text>To: {selected.end}</Text>
+            <Text>Seats : {selected.sitting}</Text>
+            <Text>Cost : {selected.cost}</Text>
+           
+          </View>
+          <View style={{alignSelf:'center',position:'relative',top:'35%'}}>
+          <TouchableOpacity className='mt-5' onPress={()=>{navigator.navigate('Notifications'); setVisible(false)}} style={styles.googleLoginButton} >
+      <Text style={styles.googleLoginText}>
+        Book ticket
+       </Text>
+       </TouchableOpacity>
+       </View>
+         </View>
+         </Modal1>
+     <View style={{flexDirection:'row',position:'relative',top:'5%',justifyContent:'space-between'}}>
       <View style={{flex:1}}>
       <TouchableOpacity   onPress={()=>navigator.navigate('Home')}>
           <MaterialCommunityIcons name='arrow-left' color={'white'} size={28} />
         </TouchableOpacity>
       </View>
-        <View style={{flex:1,paddingRight:'20%'}}>
+        <View style={{flex:1,}}>
           
-        <Text style={{color:'white',fontSize:20,fontWeight:'900',}}>
+
+        <Text className='ml-3' style={{color:'white',fontSize:20,fontWeight:'900',}}>
              Schedule
           </Text>
         </View>
+        <View style={{flex:1}}>
+      <TouchableOpacity   onPress={()=>setModalVisible(true)}>
+          <MaterialCommunityIcons style={{position:'relative',top:'10%',left:'55%'}} name='plus' color={'white'} size={28} />
+        </TouchableOpacity>
+      </View>
         </View>
-        <View style={{flexDirection:'row',justifyContent:'space-evenly',alignItems:'center',position:'relative',top:'13%',left:'0%'}}>
+        <View style={{flexDirection:'row',justifyContent:'space-evenly',alignItems:'center',position:'relative',top:'23%',left:'0%'}}>
           <View style={{flex:1,paddingLeft:'10%'}}>
-            <Text className='text-white'>Orgin</Text>
+            <Text className='text-white' >{origina}</Text>
           </View>
-          <View style={{flex:1,paddingLeft:'10%'}}>
-            <Text className='text-white'>Destination</Text>
-          </View>
-          <View style={{flex:1,paddingLeft:'10%'}}>
-            <Text className='text-white'>Agency</Text>
+          <View style={{flex:1,paddingLeft:'45%'}}>
+            <Text className='text-white' >{destinationa}</Text>
           </View>
           </View>
-          <View style={{flexDirection:'row',justifyContent:'space-evenly',alignItems:'center',position:'relative',top:'18%',left:'1%',backgroundColor:'white',borderRadius:5,width:'80%',marginBottom:'8%'}}>
-          <View style={{flex:1,paddingLeft:'5%'}}>
-          <TouchableOpacity
-          onPress={()=>setModalVisible(true)}
-       style={{
-        height: '50%',
-        width: '100%',
-        alignSelf: 'center',
-        borderRadius:5,
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor:'#032B44'
+          <View>
+     <Image 
+     fadeDuration={2000}
+      style={{
+       resizeMode: 'contain',
+       height:120,
+      width:100}} className='' source={
+      require('../assets/bus.png')} />
+      
+    </View>
+          </View>
        
-      }}
-      >
-      <View>
-     <Text style={{fontSize:14,fontWeight:'900',color:'white'}}>{origina}</Text>
-      </View>
-      </TouchableOpacity>
-      </View>
-      <View style={{flex:1,paddingLeft:'5%'}}>
-      <TouchableOpacity
-       onPress={()=>setModalVisible(true)}
-       style={{
-        height: '50%',
-        width: '100%',
-        alignSelf: 'center',
-        borderRadius:5,
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor:'#032B44'       
-      }}
-      >
-      <View>
-     <Text style={{fontSize:14,fontWeight:'900',color:'white'}}>{destinationa}</Text>
-      </View>
-      </TouchableOpacity>
-     </View>
-     <View style={{flex:1,paddingLeft:'5%',marginRight:'6%'}}>
-      <TouchableOpacity
-       onPress={()=>setModalVisible(true)}
-       style={{
-        height: '50%',
-        width: '100%',
-        alignSelf: 'center',
-        borderRadius:5,
-        justifyContent:'center',
-        alignItems:'center',
-        backgroundColor:'#032B44'
-       
-      }}
-      >
-      <View>
-     <Text style={{fontSize:14,fontWeight:'900',color:'white'}}>{agencyI}</Text>
-      </View>
-      </TouchableOpacity>
-      </View>
-          </View>
-     </View>
-    
-     <ScrollView contentContainerStyle={{ height: Dimensions.get('window').height * 5.3,}} className='mt-12' >
+     <ScrollView contentContainerStyle={{ height: Dimensions.get('window').height * 5.3,}} className='mt-1' >
       
      <BackdropModal visible={modalVisible} onClose={closeModal}>
-     
-        <View>
-          <Image 
-          style={{width:400,height:270,borderBottomRightRadius:85,borderBottomLeftRadius:85}}
-          source={require('../assets/bg.png')} />
-        </View>
-     
-        <View style={{alignItems:'center',backgroundColor:'rgba(0, 0, 0, 0.6)',width:350,position:'relative',top:'-43%',height:450,paddingTop:'8%',borderRadius:7}}>
-      <View style={styles.googleLoginButton}>
-            <Text style={styles.googleLoginText}>Choose Orgin and Destination</Text>
-          </View>
-       <Text style={{justifyContent:'center',color:'white',fontSize:17,fontWeight:'bold',paddingTop:'1%',paddingBottom:'1%'}}>
-        Orgin
-       </Text>
+    
+        
+         <View style={{flex:1,backgroundColor:'#035B94',width:'100%', borderBottomLeftRadius: 500,borderBottomLeftRadius: 400,alignItems:'center',paddingTop:'5%'}}>
+         <Text style={styles.title}>ETIX</Text>
+         </View>
+        <View style={{alignItems:'center',backgroundColor:'#E5EDF0',width: Dimensions.get('screen').width * 0.80,height: Dimensions.get('screen').height * 0.45,borderRadius:7,justifyContent:'center',position:'relative',top:'-20%'}}>
        <View>
       <Picker
         scrollable='true'
@@ -181,11 +175,9 @@ function Schedule  () {
         <Picker.Item label="Musanze" value="Musanze" />
       </Picker>
     </View>
-    <Text style={{justifyContent:'center',color:'white',fontSize:17,fontWeight:'bold',paddingTop:'2%',paddingBottom:'1%'}}>
-        Destination
-       </Text>
-       <View>
+       <View  className='mt-2'>
       <Picker
+     
         scrollable='true'
         style={styles.input}
         selectedValue={destination}
@@ -202,10 +194,7 @@ function Schedule  () {
         <Picker.Item label="Musanze" value="Musanze" />
       </Picker>
     </View>
-    <Text style={{justifyContent:'center',color:'white',fontSize:17,fontWeight:'bold',paddingTop:'1%',paddingBottom:'1%'}}>
-        Agency
-       </Text>
-    <View>
+    <View  className='mt-2'>
       <Picker
         style={styles.input}
         selectedValue={agency}
@@ -219,7 +208,7 @@ function Schedule  () {
     </View>
 
     <TouchableOpacity className='mt-2' onPress={HandleContinue} >
-        <View className='mt-5'  style={{alignItems:'center',height: Dimensions.get('screen').height * 0.05, width:Dimensions.get('screen').width * 0.4,borderRadius:5, backgroundColor:'#032B24',justifyContent:'center'}} >
+        <View className='mt-5'  style={{alignItems:'center',height: Dimensions.get('screen').height * 0.05, width:Dimensions.get('screen').width * 0.4,borderRadius:5, backgroundColor:'#035B94',justifyContent:'center'}} >
           <Text style={{color:'white',fontSize:16,fontWeight:'7000'}}>View Tickets</Text>
           </View> 
           </TouchableOpacity>
@@ -230,33 +219,37 @@ function Schedule  () {
 
       {
         cars.map((car)=>(
-      <View className='mt-1' key={car.id}>  
-      <TouchableOpacity>
-     <View key={car.id} style={{backgroundColor: 'white',width:'30%',height:Dimensions.get('screen').height * 0.16,position:'absolute',left:'3%',borderRadius:5,alignItems:'center',}}>
+          
+      <View className='mt-1'  key={car.id} >  
+      <TouchableOpacity key={car.id} onPress={()=>{setVisible(true);
+       setSelected(car)}}>
+        <View key={car.id} style={{elevation:3}}>
+        <View style={{backgroundColor: 'white',width:'30%',height:Dimensions.get('screen').height * 0.16,position:'absolute',left:'3%',borderRadius:5,alignItems:'center',elevation:2}}>
        <Text className='mt-2 ' style={{color:'#000043',fontWeight:'900',fontSize:14}}>{car.time}</Text> 
      </View>
-      <View  style={{backgroundColor: '#032B14',width:'0.5%',height:Dimensions.get('screen').height * 0.15,position:'absolute',left:'33.5%',top:'3%',borderRadius:45}}>
+      <View backgroundColor={car.line}  style={{width:'0.5%',height:Dimensions.get('screen').height * 0.15,position:'absolute',left:'33.5%',top:'3%',borderRadius:45,}}>
      </View>
-     <View  style={{backgroundColor: 'white',width:'62%',height:Dimensions.get('screen').height * 0.16,position:'relative',left:'35%',borderRadius:5,top:'1%',}}>
-      <View style={{flexDirection:'row',flex:1}}>
-     <Text className='mt-2 ' style={{color:'black',fontWeight:'900',fontSize:18,paddingLeft:'2%'}}>{car.start}</Text> 
-     <Text className='mt-2 ' style={{color:'#032B34',fontWeight:'700',fontSize:11,fontSize:19,paddingLeft:'3%'}}>{car.end}</Text>
-     </View>
-     <View style={{flexDirection:'row',flex:1}}>
-     <Text className='mt-2 ' style={{color:'black',fontWeight:'700',fontSize:15,paddingLeft:'2%'}}>Agency :</Text> 
-     <Text className='mt-2 ' style={{color:'#032B34',fontWeight:'700',fontSize:15,paddingLeft:'3%',}}>{agencyI}</Text>
+     <View  style={{backgroundColor: 'white',width:'62%',height:Dimensions.get('screen').height * 0.16,position:'relative',left:'35%',borderRadius:5,top:'1%',elevation:2}}>
+     <View style={{flexDirection:'row',flex:1}}> 
+     <Text className='mt-2 ' style={{color:'#032B34',fontWeight:'700',fontSize:16,paddingLeft:'3%',}}>{agencyI}</Text>
      </View> 
+     <View style={{flexDirection:'row',flex:1}}> 
+      <Image style={{width:22,height:22,paddingLeft:'3%'}} source={require('../assets/destination.png')} />
+     <Text  style={{color:'gray',fontWeight:'700',fontSize:16,}}>{car.cost}</Text>
+     </View>
      <View style={{flexDirection:'row',justifyContent:'flex-end',paddingTop:'5%'}}>
-     <Text className='mt-1' style={{color:'#032B34',fontWeight:'700',fontSize:11,fontSize:19}}>{car.sitting}</Text>
+     <Text className='mt-1' style={{color:'#032B34',fontWeight:'700',fontSize:11,fontSize:17}}>{car.sitting}</Text>
      <MaterialCommunityIcons name="account" size={28}  color='black' className='mt-1'  />
      
      </View>
      </View>
+        </View>
+    
      </TouchableOpacity>
      
      </View>  
      
-        ))
+     ))
       }
       
       </ScrollView>
@@ -303,7 +296,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: Dimensions.get('screen').height * 0.05,
     width: Dimensions.get('screen').width * 0.6,
-    backgroundColor: '#032B24',
+    backgroundColor: '#035B94',
     borderRadius: 5,
     justifyContent: 'center',
     marginBottom: 10,
@@ -317,5 +310,11 @@ const styles = StyleSheet.create({
    
     
   },
-
+  title: {
+    fontSize: 30,
+    fontWeight: '900',
+    color: 'white',
+  
+  },
+ 
 })

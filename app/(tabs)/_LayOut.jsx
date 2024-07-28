@@ -18,7 +18,7 @@ function TabNavigator  (){
     <Tab.Navigator screenOptions={{
       tabBarShowLabel:false,
       tabBarStyle:{
-          backgroundColor:'#032B44',
+          backgroundColor:'#035B94',
           borderTopWidth:1,
           borderTopColor:'#232533',
           height: 80,

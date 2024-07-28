@@ -10,6 +10,8 @@ const initialState =
      agency: 'None',
      travelTimeInformation:null,
      paymentType:null,
+     bookedSeats: [1, 2, 3],
+     selectedSeats: [],
      cars:[
       {
         id:15,
@@ -18,6 +20,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:1506,
         sitting:'20/24',
+        line:'#90EE90'
       },
       //Southen province
       {
@@ -27,6 +30,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:1506,
         sitting:'17/24',
+        line:'#FF4500'
       },
       {
         id:20,
@@ -35,6 +39,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:804,
         sitting:'15/24',
+        line:'#9400D3'
       },
       {
         id:21,
@@ -43,6 +48,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:1199,
         sitting:'12/24',
+        line:'#032B14'
       },
       {
         id:22,
@@ -51,6 +57,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:2281,
         sitting:'9/24',
+        line:'#FF4500'
       },
       {
         id:23,
@@ -59,6 +66,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:2400,
         sitting:'6/24',
+        line:'#9400D3'
       },
       {
         id:24,
@@ -67,6 +75,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:2178,
         sitting:'3/24',
+        line:'#032B14'
       },
       {
         id:25,
@@ -75,6 +84,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:804,
         sitting:'20/24',
+        line:'#FF4500'
       },
       {
         id:26,
@@ -83,6 +93,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:506,
         sitting:'15/24',
+        line:'#9400D3'
       },
       {
         id:27,
@@ -91,6 +102,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:1564,
         sitting:'10/24',
+        line:'#032B14'
       },
       {
         id:28,
@@ -99,6 +111,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:2400,
         sitting:'5/24',
+        line:'#FF4500'
       },
       {
         id:29,
@@ -107,6 +120,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:2000,
         sitting:'11/24',
+        line:'#9400D3'
       },
       {
         id:30,
@@ -115,6 +129,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:1000,
         sitting:'2/24',
+        line:'#032B14'
       },
       {
         id:31,
@@ -123,6 +138,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:1500,
         sitting:'23/24',
+        line:'#FF4500'
       },
       {
         id:32,
@@ -131,6 +147,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:2000,
         sitting:'14/24',
+        line:'#9400D3'
       },
       {
         id:33,
@@ -139,6 +156,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:2400,
         sitting:'22/24',
+        line:'#032B14'
       },
       {
         id:34,
@@ -147,6 +165,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:2000,
         sitting:'8/24',
+        line:'#FF4500'
       },
       {
         id:35,
@@ -155,6 +174,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:1000,
         sitting:'20/24',
+        line:'#9400D3'
       },
       {
         id:36,
@@ -163,6 +183,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:1500,
         sitting:'21/24',
+        line:'#032B14'
       },
       {
         id:37,
@@ -171,6 +192,7 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:2000,
         sitting:'19/24',
+        line:'#FF4500'
       },
       {
         id:38,
@@ -179,12 +201,15 @@ const initialState =
         time:'2024-7-20 16:30',
         cost:2400,
         sitting:'16/24',
+        line:'#9400D3'
       },
-     ]
+     ],
+
+ 
 }
 
  const appSlice = createSlice({
-    name:'application',
+    name:'seats',
     initialState,
     reducers:{
        setSignupData:(state,action)=>{
@@ -229,11 +254,28 @@ const initialState =
       },
       setPymentType:(state,action)=>{
         state.paymentType = action.payload
-      }
+      },
+      toggleSeat: (state, action) => {
+        const seatNumber = action.payload;
+        if (state.bookedSeats.includes(seatNumber)) {
+          alert(`Seat ${seatNumber} has already been booked.`);
+        } else if (state.selectedSeats.includes(seatNumber)) {
+          state.selectedSeats = state.selectedSeats.filter((seat) => seat !== seatNumber);
+        } else {
+          state.selectedSeats.push(seatNumber);
+        }
+      },
+      confirmSelection: (state) => {
+        state.bookedSeats = [...state.bookedSeats, ...state.selectedSeats];
+        state.selectedSeats = [];
+      },
+      loadBookedSeats: (state, action) => {
+        state.bookedSeats = action.payload;
+      },
     }
 })
 
-export const{setOrgina,setDestinationa,setAgency,setTravelTimeInformation,setPymentType,setLoginData,setSignupData,setAgecnyLoginData} = appSlice.actions
+export const{setOrgina,setDestinationa,setAgency,setTravelTimeInformation,setPymentType,setLoginData,setSignupData,setAgecnyLoginData,toggleSeat, confirmSelection, loadBookedSeats} = appSlice.actions
 
 export const selectOrgina =(state)=>state.application.origin
 export const selectDestinationa =(state)=>state.application.destination

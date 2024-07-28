@@ -117,29 +117,53 @@ const Tickets = () => {
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={styles.scrollView}>
           {tickets.length === 0 ? (
+            <View style={{flexDirection:'row',justifyContent:'center'}}>
             <Text style={styles.noTicketsText}>No tickets found</Text>
+            <Image
+            className='mt-5'
+            style={{height:70,width:70}}
+             source={require('../assets/notFound.png')} />
+            </View>
           ) : (
-            tickets.map(ticket => (
-              <View key={ticket._id} style={styles.card}>
+            tickets.map(ticket => (<>
+                    <View key={ticket.id}  style={styles.card}>
+          <View style={{flexDirection:'row'}}>
                 <Text style={styles.cardText}>Origin: {ticket.origin}</Text>
+                <View>
+         <Image 
+          style={{
+          resizeMode: 'contain',
+          height:30,
+          width:290}} className='' source={
+          require('../assets/bus2.png')} />
+      
+             </View>
+                </View>
                 <Text style={styles.cardText}>Destination: {ticket.destination}</Text>
                 <Text style={styles.cardText}>Agency: {ticket.agency}</Text>
-                <Text style={styles.cardText}>Departure Time: {new Date(ticket.departureTime).toLocaleString()}</Text>
-                <TouchableOpacity onPress={handleBuyTicket}>
+                <Text style={styles.cardText}>Departure Time: {ticket.timing}</Text>
+                <TouchableOpacity onPress={handleBuyTicket} >
+                  <View style={{justifyContent:'center',alignItems:'center', backgroundColor:'#035B94',width:90,height:40,alignSelf: 'flex-end',borderRadius:5}}>
                   <Text style={styles.buyButton}>Buy Ticket</Text>
+                  </View>
                 </TouchableOpacity>
               </View>
+            </>
+             
+              
             ))
           )}
         </ScrollView>
       </SafeAreaView>
-   <Modal1 visible={modalVisible} onClose={closeModal}>
-     <View style={styles.container2}>
-      <Text style={styles.label}>Select Payment Method:</Text>
+      <Modal1 visible={modalVisible} onClose={closeModal}>
+              <View style={{backgroundColor:'#035B94',width:'100%', borderBottomLeftRadius: 500,borderBottomLeftRadius: 400,alignItems:'center',paddingTop:'5%',height:'55%'}}>
+         <Text style={styles.title}>ETIX</Text>
+         </View>
+     <View style={{alignItems:'center',backgroundColor:'#E5EDF0',width: Dimensions.get('screen').width * 0.80,height: Dimensions.get('screen').height * 0.50,borderRadius:7,justifyContent:'center',position:'relative',top:'-30%'}}>
    <View style={{justifyContent:'space-around',alignItems:'center',flexDirection:'row'}}>
    <TouchableOpacity  style={styles.googleLoginButton} onPress={()=>handlePaymentMethodChange('airtel')}>
             <Image
-              style={{width:400,height:100}}
+              style={{width:300,height:80}}
               resizeMode="contain"
               source={require('../assets/airtel.png')}
             />
@@ -157,7 +181,7 @@ const Tickets = () => {
    <View>
    <TouchableOpacity style={styles.googleLoginButton2} onPress={()=>handlePaymentMethodChange('card')}>
             <Image
-              style={{width:100,height:90}}
+              style={{width:60,height:60}}
               resizeMode="contain"
               source={require('../assets/card.png')}
             />
@@ -168,20 +192,17 @@ const Tickets = () => {
         <View style={{justifyContent:'center',alignItems:'center'}}>
 
 
+
         <TextInput
           style={styles.input2}
           value={name}
           onChangeText={(text) => setName(text)}
-          placeholder='Name'
+          placeholder='Enter your name'
           
         />
-        <Text style={{
-    paddingTop:'10%', 
-    fontSize: 23,
-    marginBottom: 10,
-    fontWeight:'900',
-    color:'#032B34'}}>Enter Credentials:</Text>
+    
         <TextInput
+        className='mt-2 mb-3'
           style={styles.input2}
           value={credentials}
           onChangeText={(text) => setCredentials(text)}
@@ -206,9 +227,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#E5EDF0',
+    justifyContent:'center'
   },
   header: {
-    backgroundColor: '#032B44',
+    backgroundColor: '#035B94',
     height: 150,
     justifyContent: 'center',
     alignItems: 'center',
@@ -234,10 +256,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   buyButton: {
-    alignSelf: 'flex-end',
-    color: '#032B44',
+    color: 'white',
     fontWeight: 'bold',
-    marginTop: 10,
   },
   noTicketsText: {
     alignSelf: 'center',
@@ -323,10 +343,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   container2: {
-    flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#E5EDF0',
     alignItems:'center',
-    justifyContent:'flex-start'
+    justifyContent:'center',
+    borderRadius:10,
+    position:'relative',
+    top:'-1%',
+    width:'90%',
+    height:500
+    
   },
   label: {
     fontSize: 23,
@@ -350,14 +375,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 15,
     backgroundColor:'white',
-    marginBottom:'5%'
+    
   },
   googleLoginButton: {
     flexDirection: 'row',
     alignItems: 'center',
     height: Dimensions.get('screen').height * 0.06,
-    width: Dimensions.get('screen').width * 0.35,
-    backgroundColor: '#032B44',
+    width: Dimensions.get('screen').width * 0.30,
+    backgroundColor: '#035B94',
     borderRadius: 5,
     justifyContent: 'center',
     marginBottom: 20,
@@ -365,20 +390,20 @@ const styles = StyleSheet.create({
     marginRight:'3%'
   },
   googleIcon: {
-    width: 50,
-    height: 35,
+    width: 40,
+    height: 27,
   },
   googleLoginText: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 15,
     fontWeight:'700'
   },
   googleLoginButton2: {
     flexDirection: 'row',
     alignItems: 'center',
     height: Dimensions.get('screen').height * 0.06,
-    width: Dimensions.get('screen').width * 0.74,
-    backgroundColor: '#032B44',
+    width: Dimensions.get('screen').width * 0.65,
+    backgroundColor: '#035B94',
     borderRadius: 5,
     justifyContent: 'center',
     marginBottom: 20,
@@ -391,6 +416,12 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
     fontWeight:'700'
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: '900',
+    color: 'white',
+  
   },
 });
 

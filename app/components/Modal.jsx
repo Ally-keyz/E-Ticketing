@@ -32,17 +32,18 @@ const styles = StyleSheet.create({
   modalContainer: {
     backgroundColor: '#FFFFFF',
     borderRadius: 10,
-    padding: 20,
+    
     minWidth: 300,
     justifyContent:'flex-start',
     alignItems: 'center',
     backgroundColor: '#fff',
     width: Dimensions.get('screen').width * 0.87,
-    height: Dimensions.get('screen').height * 0.50,
+    height: Dimensions.get('screen').height * 0.7,
     borderRadius: 10,
-    paddingTop:'6%',
+    
     overflow: 'hidden',
   },
+  
 });
 
 export default Modal1;

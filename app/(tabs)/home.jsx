@@ -11,6 +11,8 @@ import { setDestinationa, setOrgina } from '../appSlice/appSlices'
 import { useNavigation } from '@react-navigation/native'
 import HorizontalScrollView from '../components/HorizontalScroll'
 import { Dimensions } from 'react-native'
+import Modal1 from '../components/Modal'
+
 
 
 
@@ -20,13 +22,20 @@ const Home = () => {
   const[destination,setDestination] = useState('')
   const navigation = useNavigation()
   const dispatch = useDispatch()
-  const [visible, setVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [translateX] = useState(new Animated.Value(-Dimensions.get('window').width));
-  
   const navigator = useNavigation()
  
   
+
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+  const HandleOpen = () => {
+    setModalVisible(true);
+  };
   const toggleOffCanvas = () => {
     setIsOpen(!isOpen);
     Animated.spring(translateX, {
@@ -41,7 +50,6 @@ const Home = () => {
 
 
 
- 
 
 
   const HandleContinue =(e)=>{
@@ -66,11 +74,6 @@ const Home = () => {
            </TouchableOpacity>
       </View>
   
-    
-    
-   
-   
-
       <Animated.View style={[styles.offCanvas, offCanvasStyle]}>
         <View   style={{
             height: Dimensions.get('window').height * 0.17,
@@ -82,20 +85,20 @@ const Home = () => {
             left:'0%',
             justifyContent:'center',
             alignItems:'center',
-            backgroundColor: '#032B34',
+            backgroundColor: '#035B94',
            
            
           }} >
         <Text
          style={{ color:'white',
-          fontSize:23,
+          fontSize:20,
           fontWeight:'900',
           position:'absolute',
           top:'34%',
           left:'3%',}}
         >Our menu</Text>
         <TouchableOpacity onPress={toggleOffCanvas} style={styles.closeButton}>
-          <MaterialCommunityIcons name='arrow-left' color={'white'} size={30} />
+          <MaterialCommunityIcons name='arrow-left' color={'white'} size={23} />
         </TouchableOpacity>
      </View>
         <TouchableOpacity
@@ -168,7 +171,7 @@ const Home = () => {
               height: '4%',
               width: '63%',
               alignSelf: 'center',
-              backgroundColor: '#032B44',
+              backgroundColor: '#035B94',
               borderRadius:5,
               position:'absolute',
               top:'35%',
@@ -185,25 +188,91 @@ const Home = () => {
       </TouchableOpacity>
         
       </Animated.View>
-   
-
+      <Modal1 visible={modalVisible} onClose={closeModal}>
+      <View style={{backgroundColor:'#035B94',width:'100%', borderBottomLeftRadius: 500,borderBottomLeftRadius: 400,alignItems:'center',paddingTop:'5%',height:'55%'}}>
+         <Text style={styles.title}>ETIX</Text>
+         </View>
+         <View style={{alignItems:'center',backgroundColor:'#E5EDF0',width: Dimensions.get('screen').width * 0.80,height: Dimensions.get('screen').height * 0.50,borderRadius:7,position:'relative',top:'-30%'}}>
+         <View style={{alignItems:'center',flexDirection:'row'}}>
+          <Text style={{
+            fontSize: 17,
+            fontWeight: '800',
+          }}>Steps</Text>
+          </View>
+          <View className='mt-5'>
+            <Text>Go to home</Text>
+            <Text>Enter your origin and destination</Text>
+            <Text>Press continue</Text>
+            <Text>You are then  on the booking page</Text>
+            <Text>Choose or change origin and destination</Text>
+            <Text>Select travel Agency</Text>
+            <Text>Choose seats</Text>
+            <Text>Find tickets</Text>
+            <Text>You are on the tickets page </Text>
+            <Text>Select buy ticket for the ticket you want</Text>
+            <Text>Enter the payment credentials</Text>
+          </View>
+          <TouchableOpacity className='mt-5' onPress={closeModal} style={styles.googleLoginButton} >
+      <Text style={styles.googleLoginText}>
+        Close
+       </Text>
+       </TouchableOpacity>
+         </View>
+      </Modal1>
     <View className='h-full' style={{backgroundColor:'white',}}>
      <ScrollView 
-       contentContainerStyle={{ height: Dimensions.get('window').height * 1.5 }}
+       contentContainerStyle={{ height: Dimensions.get('window').height *1.6 }}
        style={{ flex: 1 }}
        >
-      <View>
-        <HorizontalScrollView />
-      </View>
+      <View style={{flex:0.4,width:'100%',backgroundColor: '#035B94',borderBottomLeftRadius: 500,borderBottomLeftRadius: 300,}}>
+      
+       </View>
+       <View style={{
+         
+         justifyContent: 'center',
+         alignItems: 'center',
+         width: '100%',
+       }}>
+      <View style={{
+           justifyContent: 'center',
+           alignItems: 'center',
+           backgroundColor: '#E5EDF0',
+           width: Dimensions.get('screen').width * 0.87,
+           height: Dimensions.get('screen').height * 0.2,
+           borderRadius: 10,
+           position:'relative',
+           top:'-130%',
+      }}>
+               <View>
+     <Image 
+     className='mt-2'
+      style={{
+       resizeMode: 'contain',
+       height:50,
+      width:60}}  source={
+      require('../assets/guide.png')} />
+      
+    </View>
+<TouchableOpacity className='mt-5' onPress={HandleOpen} style={styles.googleLoginButton} >
+      <Text style={styles.googleLoginText}>
+        View Guides
+       </Text>
+       </TouchableOpacity>
+       </View>
+       </View>
       <View style={styles.loginContainer}>
       <View style={styles.loginBox}>
-      <View style={styles.googleLoginButton}>
-            <Text style={styles.googleLoginText}>Choose Orgin and Destination</Text>
-          </View>
-       <Text style={{justifyContent:'center',color:'#032B44',fontSize:20,fontWeight:'bold',paddingTop:'1%',paddingBottom:'3%'}}>
-        Orgin
-       </Text>
-       <View>
+      <View>
+     <Image 
+     fadeDuration={2000}
+      style={{
+       resizeMode: 'contain',
+       height:100,
+      width:150}} className='' source={
+      require('../assets/Route.png')} />
+      
+    </View>
+    <View>
       <Picker
         scrollable='true'
         style={styles.input}
@@ -212,8 +281,8 @@ const Home = () => {
           
         }
       >
-        
-        <Picker.Item label="Choose city of Orgin"  disabled={true} />
+  
+        <Picker.Item label="Orgin"  disabled={true} />
         <Picker.Item label="Kigali" value="Kigali" />
         <Picker.Item label="Muhanga" value="Muhanga" />
         <Picker.Item label="Ruhango" value="Ruhango" />
@@ -224,17 +293,15 @@ const Home = () => {
         <Picker.Item label="Musanze" value="Musanze" />
       </Picker>
     </View>
-    <Text style={{justifyContent:'center',color:'#032B44',fontSize:20,fontWeight:'bold',paddingTop:'2%',paddingBottom:'4%'}}>
-        Destination
-       </Text>
-       <View>
+       <View  className='mt-2'>
       <Picker
+     
         scrollable='true'
         style={styles.input}
         selectedValue={destination}
         onValueChange={(itemValue) => setDestination(itemValue)}
       >
-        <Picker.Item label="Choose city of Destination"  disabled={true} />
+        <Picker.Item label="Destination"  disabled={true} />
         <Picker.Item label="Kigali" value="Kigali" />
         <Picker.Item label="Muhanga" value="Muhanga" />
         <Picker.Item label="Ruhango" value="Ruhango" />
@@ -245,15 +312,19 @@ const Home = () => {
         <Picker.Item label="Musanze" value="Musanze" />
       </Picker>
     </View>
-    <View style={styles.continueBox}>
-      <TouchableOpacity onPress={HandleContinue} style={styles.googleLoginButton} >
+    <TouchableOpacity className='mt-5' onPress={HandleContinue} style={styles.googleLoginButton} >
       <Text style={styles.googleLoginText}>
         Continue
        </Text>
        </TouchableOpacity>
+      </View>
+      <View className='w-full' style={{flex:1,position:'relative',top:'-10%',}}>
+           <View style={{justifyContent:'flex-start',marginLeft:'10%'}}>
+            <Text style={{fontSize: 16,fontWeight: '800',color:'#035B94'}}>Popular Routes</Text>
+            </View> 
+            <HorizontalScrollView />
+      </View>
     </View>
-      </View>
-      </View>
       </ScrollView>
     </View>
     </View>
@@ -265,7 +336,7 @@ export default Home
 const styles = StyleSheet.create({
   container:{
     justifyContent: 'space-between',
-    backgroundColor: '#032B44',
+    backgroundColor: '#035B94',
     height: Dimensions.get('window').height * 0.96,
     color:'white',
     fontSize:27,
@@ -290,11 +361,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#E5EDF0',
     width: Dimensions.get('screen').width * 0.87,
-    height: Dimensions.get('screen').height * 0.55,
+    height: Dimensions.get('screen').height * 0.45,
     borderRadius: 10,
-    position: 'relative',
-    top: '-35%',
-    paddingTop:'10%'
+    position:'relative',
+    top:'-17%',
+    
   },
   loginContainer: {
     backgroundColor: 'white',
@@ -308,7 +379,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: Dimensions.get('screen').height * 0.06,
     width: Dimensions.get('screen').width * 0.8,
-    backgroundColor: '#032B44',
+    backgroundColor: '#035B94',
     borderRadius: 5,
     justifyContent: 'center',
     marginBottom: 20,
@@ -318,7 +389,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   input: {
-    height: Dimensions.get('screen').height * 0.09,
+    height: Dimensions.get('screen').height * 0.06,
     width: Dimensions.get('screen').width * 0.8,
     borderRadius: 10,
     borderColor: '#ccc',
@@ -370,5 +441,11 @@ const styles = StyleSheet.create({
     left:'80%',
     top:'36%'
     
+  },
+  title: {
+    fontSize: 25,
+    fontWeight: '900',
+    color: 'white',
+  
   },
 })

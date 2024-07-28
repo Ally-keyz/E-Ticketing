@@ -51,11 +51,11 @@ const styles = StyleSheet.create({
       scrollView: {
         paddingVertical: 20,
         paddingHorizontal: 10,
-        backgroundColor:'#032B44',
+        backgroundColor:'#035B94',
         height:'100%'
       },
     header: {
-        backgroundColor: '#032B44',
+        backgroundColor: '#035B94',
         height: 120,
         justifyContent: 'space-around',
         alignItems: 'center',
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
       },
       loginButton: {
-        backgroundColor: '#032B24',
+        backgroundColor: '#032B44',
         padding: 15,
         borderRadius: 12,
         width: Dimensions.get('screen').width * 0.5,

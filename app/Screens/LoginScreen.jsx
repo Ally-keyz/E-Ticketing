@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, Image, Animated, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
 import { Dimensions } from 'react-native';
-import { setLoginData } from './AgencyLogin';
 import { ScrollView } from 'react-native';
 import { ActivityIndicator } from 'react-native';
 import axios from 'axios';
@@ -19,7 +16,6 @@ const LoginScreen = () => {
  
 
   const handleLogin = async () => {
-    navigator.navigate('Driver')
     setLoading(true);  
 
     try {
@@ -58,7 +54,7 @@ const LoginScreen = () => {
     contentContainerStyle={{ height: Dimensions.get('window').height * 1.3 }}
     style={{ flex: 1,width:'100%'}}
     >
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#032B44',width:'100%' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#035B94',width:'100%' }}>
       <View style={{ flex: 1, alignItems:'center',paddingTop:'20%'}}>
         <Text style={styles.title}>ETIX</Text>
       </View>
@@ -107,7 +103,7 @@ const LoginScreen = () => {
           <Text style={styles.signupLink} className='mb-2' onPress={HandlePress}>Login as Driver</Text>
           </TouchableOpacity>
           <Text style={styles.signupText}>
-            Don't have an account?{' '}
+            Don't have an account?
             <Text style={styles.signupLink} onPress={() => navigator.navigate('Signup')}>
               Signup
             </Text>
@@ -156,7 +152,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: Dimensions.get('screen').height * 0.06,
     width: Dimensions.get('screen').width * 0.8,
-    backgroundColor: '#032B44',
+    backgroundColor: '#035B94',
     borderRadius: 5,
     justifyContent: 'center',
     marginBottom: 20,
@@ -204,7 +200,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   loginButton: {
-    backgroundColor: '#032B44',
+    backgroundColor: '#035B94',
     padding: 15,
     borderRadius: 12,
     width: Dimensions.get('screen').width * 0.5,

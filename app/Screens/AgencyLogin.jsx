@@ -21,7 +21,7 @@ const AgencyLogin = () => {
     dispatch(setAgecnyLoginData([selectedAgency , name , password]));
     setPassword('');
     setName('')
-    navigator.navigate('pages')
+    navigator.navigate('Driver')
   }
 
 
@@ -32,14 +32,31 @@ const AgencyLogin = () => {
     contentContainerStyle={{ height: Dimensions.get('window').height * 1.3 }}
     style={{ flex: 1,width:'100%'}}
     >
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#032B44',width:'100%' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#035B94',width:'100%' }}>
     <View style={{ flex: 1, alignItems:'center',paddingTop:'12%'}}>
         <Text style={styles.title}>ETIX</Text>
       </View>
     <View style={styles.loginContainer}>
     <View style={styles.loginBox}>
     
+
+    
+      <TextInput
+        placeholder="  Driver name"
+        value={name}
+        onChangeText={(text) => setName(text)}
+        style={styles.input}
+      />
+      <TextInput
+        className='mb-2 mt-2'
+        placeholder="  Password"
+        value={password}
+        onChangeText={(text) => setPassword(text)}
+        style={styles.input}
+        secureTextEntry={true}
+      />
       <Picker
+        className='mt-5'
         style={styles.input}
         selectedValue={selectedAgency}
         onValueChange={(itemValue) => setSelectedAgency(itemValue)}
@@ -49,22 +66,6 @@ const AgencyLogin = () => {
         <Picker.Item label="Horizon" value="Horizon" />
         <Picker.Item label="Litico" value="Litico" />
       </Picker>
-    
-      <TextInput
-        placeholder="  Driver name"
-        className='mt-7'
-        value={name}
-        onChangeText={(text) => setName(text)}
-        style={styles.input}
-      />
-      <TextInput
-        className='mt-7'
-        placeholder="  Password"
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-        style={styles.input}
-        secureTextEntry={true}
-      />
       <TouchableOpacity>
         <Text className='text-blue-600 text-psemibold   mt-2  text-end' style={styles.forgotPasswordText}>
         Forgot password
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     height: Dimensions.get('screen').height * 0.05,
     width: Dimensions.get('screen').width * 0.8,
-    backgroundColor: '#032B44',
+    backgroundColor: '#035B94',
     borderRadius: 5,
     justifyContent: 'center',
     marginBottom: 20,
@@ -162,7 +163,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   loginButton: {
-    backgroundColor: '#032B44',
+    backgroundColor: '#035B94',
     padding: 15,
     borderRadius: 12,
     width: Dimensions.get('screen').width * 0.5,

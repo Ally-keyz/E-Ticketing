@@ -7,8 +7,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 import { Picker } from '@react-native-picker/picker';
 import { Dimensions } from 'react-native';
-
+import { Image } from 'react-native';
 import {  setAgency } from '../appSlice/appSlices'
+import Modal1 from '../components/Modal'
+import SeatSelector from '../components/SeatSelector';
 
 
 function Booking () {
@@ -17,7 +19,17 @@ const destination = useSelector( state => state.destination)
 const navigator = useNavigation()
 const[agency,setAgentI] = useState('')
 const dispatch = useDispatch() 
+const [modalVisible, setModalVisible] = useState(false);
 
+
+
+
+const closeModal = () => {
+  setModalVisible(false);
+};
+const HandleOpen = () => {
+  setModalVisible(true);
+};
 const handleSubmit = (e) => {
  
   dispatch(setAgency(agency));
@@ -40,7 +52,15 @@ const handleSubmit = (e) => {
       </MapView>
      
     <View className='bg-white h-full'>
-    <ScrollView contentContainerStyle={{ height: Dimensions.get('window').height * 1.7 }} style={{flex:1}} >
+    <ScrollView contentContainerStyle={{ height: Dimensions.get('window').height * 2 }} style={{flex:1}} >
+    <Modal1 visible={modalVisible} onClose={closeModal}>
+      <View style={{backgroundColor:'#035B94',width:'100%', borderBottomLeftRadius: 500,borderBottomLeftRadius: 400,alignItems:'center',paddingTop:'5%',height:'55%'}}>
+         <Text style={styles.title}>ETIX</Text>
+         </View>
+         <View style={{alignItems:'center',width: Dimensions.get('screen').width * 0.80,height: Dimensions.get('screen').height * 0.55,position:'relative',top:'-35%'}}>
+          <SeatSelector />
+         </View>
+         </Modal1>
     <View style={{backgroundColor:'#E5EDF0',height: Dimensions.get('window').height * 0.09,}}>
     <Text style={{color:'white',position:'relative',top:'5%',left:'35%',fontSize:37,fontWeight:'900',paddingBottom:10}}>
             Booking 
@@ -51,34 +71,39 @@ const handleSubmit = (e) => {
            
            justifyContent:'start',
            width: Dimensions.get('screen').width * 0.87,
-           height: Dimensions.get('screen').height * 0.50,
+           height: Dimensions.get('screen').height * 0.55,
            backgroundColor: '#E5EDF0',
            borderRadius: 20,
            alignItems: 'center',
            paddingTop:'12%'
           
       }}>
-        <View style={styles.googleLoginButton}>
-   <Text style={styles.googleLoginText} className='mt-5'>
-         Your origin and destination
-       </Text>
-       </View>
-       <View style={{justifyContent:'center',color:'white',fontSize:17,fontWeight:'3000',paddingLeft:77,
+       <View>
+     <Image 
+     fadeDuration={2000}
+      style={{
+       resizeMode: 'contain',
+       height:100,
+      width:150}} className='' source={
+      require('../assets/Route.png')} />
+      
+    </View>
+       <View style={{justifyContent:'center',color:'white',fontSize:17,fontWeight:'3000',
          width: Dimensions.get('screen').width * 0.80,
-         height: Dimensions.get('screen').height * 0.12,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'#032B44',display:'flex'}}>
+         height: Dimensions.get('screen').height * 0.12,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'#035B94',alignItems:'center'}}>
         <Text style={{color:'#E5EDF0',fontSize:17,fontWeight:'3000'}}>Orgin</Text>
-        <Text style={{color:'#032B44',fontSize:23,fontWeight:'7000',paddingLeft:10,height: 40, width:195,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'white',paddingTop:5}}>{origin}</Text>
+        <Text style={{color:'#032B44',fontSize:20,fontWeight:'7000',paddingLeft:10,height: 40, width:195,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'white',paddingTop:5}}>{origin}</Text>
        </View>
-       <View style={{justifyContent:'center',color:'white',fontSize:17,fontWeight:'3000',paddingLeft:77
+       <View style={{justifyContent:'center',color:'white',fontSize:17,fontWeight:'3000'
          ,width: Dimensions.get('screen').width * 0.80,
-         height: Dimensions.get('screen').height * 0.12,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'#032B44',display:'flex'}}>
+         height: Dimensions.get('screen').height * 0.12,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'#035B94',alignItems:'center'}}>
         <Text style={{color:'white',fontSize:17,fontWeight:'9000'}}>Destination</Text>
-        <Text style={{color:'#032B44',fontSize:23,fontWeight:'7000',paddingLeft:10,height: 40, width:195,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'white',paddingTop:5}}>{destination}</Text>
+        <Text style={{color:'#032B44',fontSize:20,fontWeight:'7000',paddingLeft:10,height: 40, width:195,borderRadius:5, borderColor: '#ccc', borderWidth: 1,backgroundColor:'white',paddingTop:5}}>{destination}</Text>
        </View>
        <TouchableOpacity onPress={()=>navigator.navigate('Home')}>
-        <View className='mt-5'  style={{alignItems:'center',height: Dimensions.get('screen').height * 0.05, width:Dimensions.get('screen').width * 0.55,borderRadius:10, backgroundColor:'#032B34',justifyContent:'center'}} >
+        <View className='mt-3'  style={{alignItems:'center',height: Dimensions.get('screen').height * 0.05, width:Dimensions.get('screen').width * 0.55,borderRadius:5, backgroundColor:'#035B94',justifyContent:'center'}} >
           
-          <Text style={{color:'white',fontSize:20,fontWeight:'7000'}}>Choose or Change</Text>
+          <Text style={{color:'white',fontSize:15,fontWeight:'7000'}}>Choose or Change</Text>
           </View> 
           </TouchableOpacity>
       </View>
@@ -93,11 +118,17 @@ const handleSubmit = (e) => {
            alignItems: 'center',
            paddingTop:'7%'
       }}>
-        <View style={styles.googleLoginButton}>
-        <Text style={styles.googleLoginText} className='mt-5'>
-         Your Travel  Agecy
-       </Text>
-       </View>
+          <View>
+     <Image 
+     className='mb-5'
+     fadeDuration={2000}
+      style={{
+       resizeMode: 'contain',
+       height:40,
+      width:100}}  source={
+      require('../assets/bus.png')} />
+      
+    </View>
       <Text style={{justifyContent:'center',color:'#032B44',fontSize:20,fontWeight:'bold',paddingTop:'1%',paddingBottom:25}}>
         Agency
        </Text>
@@ -114,15 +145,15 @@ const handleSubmit = (e) => {
       </Picker>
     </View>
     <TouchableOpacity className='mt-2' onPress={handleSubmit}>
-        <View className='mt-12'  style={{alignItems:'center',height: Dimensions.get('screen').height * 0.05, width:Dimensions.get('screen').width * 0.55,borderRadius:10,  borderWidth: 1,backgroundColor:'#032B44',justifyContent:'center'}} >
+        <View className='mt-5'  style={{alignItems:'center',height: Dimensions.get('screen').height * 0.05, width:Dimensions.get('screen').width * 0.55,borderRadius:5, backgroundColor:'#035B94',justifyContent:'center'}} >
           
-          <Text style={{color:'white',fontSize:20,fontWeight:'7000'}}>Find Ticket</Text>
+          <Text style={{color:'white',fontSize:15,fontWeight:'7000'}}>Find Ticket</Text>
           </View> 
           </TouchableOpacity>
         </View>
-       
      </View>
      </View>
+    
      </ScrollView>
    </View>
    </>
@@ -171,18 +202,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
   },
-  googleLoginButton: {
-    flexDirection: 'row',
-    height: Dimensions.get('screen').height * 0.08,
-    width: Dimensions.get('screen').width * 0.8,
-    backgroundColor: '#032B44',
-    borderRadius: 5,
-    justifyContent: 'center',
-  },
-  googleLoginText: {
-    color: 'white',
-    fontSize: 15,
-  },
   input: {
     height: Dimensions.get('screen').height * 0.07,
     width: Dimensions.get('screen').width * 0.8,
@@ -204,7 +223,28 @@ const styles = StyleSheet.create({
     position:'relative',
     top:'30%',
    
-  }
+  },
+  googleLoginButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: Dimensions.get('screen').height * 0.06,
+    width: Dimensions.get('screen').width * 0.8,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    justifyContent: 'center',
+    marginBottom: 20,
+    marginTop:15
+  },
+  googleLoginText: {
+    color: '#035B94',
+    fontSize: 15,
+  },
+  title: {
+    fontSize: 25,
+    fontWeight: '900',
+    color: 'white',
+  
+  },
 })
 
 
